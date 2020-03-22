@@ -1,4 +1,4 @@
-const BLACKLIST_WORDS = ['chat', 'click', 'here', 'hot', 'join', 'live', 'love', 'me', 'photo', 'sex', 'tap']
+const BLACKLIST_WORDS = ['chat', 'click', 'colona', 'here', 'hot', 'join', 'live', 'love', 'mask', 'me', 'photo', 'sex', 'tap']
 const NORMALIZE_MAP = {
   a: ['ᴀ', 'ᗩ'],
   c: ['ᴄ', 'ᑕ'],
@@ -68,14 +68,6 @@ var spamCheck = (targetDoc, item) => {
 
   var parsedName = authorName.replace(/^[A-Za-z]+/, '').trim()
   var suspCounter = 0
-  SUSPICIOUS_LANGUAGES.forEach(suspLang => {
-    var targetRegExp = new RegExp('\\p{Script=' + suspLang + '}', 'u')
-    if (parsedName.search(targetRegExp) !== -1)
-      suspCounter++
-  })
-  var suspRate = suspCounter / SUSPICIOUS_LANGUAGES.length * 100
-
-  suspCounter = 0
   var suspWords = parsedName.split(/\s+/)
   suspWords.forEach(suspWord => {
     if (BLACKLIST_WORDS.includes(normalizeWord(suspWord)))
