@@ -73,6 +73,7 @@ var spamCheck = (targetDoc, item) => {
     if (BLACKLIST_WORDS.includes(normalizeWord(suspWord)))
       suspCounter++
   })
+  var suspRate = 0
   if (suspWords.length >= 3)
     suspRate += suspCounter / suspWords.length * 100
 
